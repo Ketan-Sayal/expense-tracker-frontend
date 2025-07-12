@@ -31,7 +31,7 @@ function RootLayout() {
   const logout = async()=>{
     setLoading(true);
     try {
-      const res = await axios.post("/api/users/", {}, {headers:{token:Cookies.get("token")}});
+      const res = await axios.post("https://expense-tracker-backend-qwkl.onrender.com/users/", {}, {headers:{token:Cookies.get("token")}});
       if(res.data?.data?.sucess){
         setIsLoggedIn(false);
         setUser(null);

@@ -28,7 +28,7 @@ function ContactSupport() {
     // console.log(data);
     setLoading(true);
     try {
-      await axios.post("/api/contact", data);
+      await axios.post("https://expense-tracker-backend-qwkl.onrender.com/contact", data);
 
        await emailjs.send(config.emailjsServiceId, config.emailjsTemplateId, {name:data.name, email:data.email, message:data.message}, {
         publicKey: config.emailjsPublicKey,

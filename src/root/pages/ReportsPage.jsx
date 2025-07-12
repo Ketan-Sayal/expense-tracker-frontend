@@ -20,8 +20,10 @@ const ReportsPage = () => {
   const {isLoggedIn} = useAuthContext();
 
   useEffect(()=>{
-    axios.get("/api/expenses/report", {headers:{token:Cookies.get("token")}}).then((res)=>{
+    axios.get("https://expense-tracker-backend-qwkl.onrender.com/expenses/report", {headers:{token:Cookies.get("token")}}).then((res)=>{
       const data = res.data.data;
+      // console.log(res);
+      
       setTotalExpensesOfThisMonth(data.totalExpenseOfThisMonth);
       setBiggestIncrease(data.biggestIncrease);
       setBiggestSavings(data.biggestSavings);
@@ -31,7 +33,7 @@ const ReportsPage = () => {
       setCurrYear(data.currYear);
       setRemainingBuget(data.remainingBuget);
       setUserExpenseDataOfThisWeek(data.userExpenseDataOfThisWeek);
-      console.log(data);
+      // console.log(data);
       
     }).catch(err=>console.log(err));
   }, []);

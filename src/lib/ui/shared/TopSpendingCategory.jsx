@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import Cookies from "js-cookie";
 
 const TopSpendingCategory = () => {
     const [thisMonthData, setThisMonthData] = useState([]);
@@ -9,7 +10,7 @@ const TopSpendingCategory = () => {
     const [diffenceCategories, setDiffenceCategories] = useState([]);
 
     useEffect(()=>{
-      axios.get("/api/expenses/topSpending").then((res)=>{
+      axios.get("https://expense-tracker-backend-qwkl.onrender.com/expenses/topSpending", {headers:{token:Cookies.get("token")}}).then((res)=>{
         const data = res.data.data;
         setThisMonthData(data?.thisMonth);
         setLastMonthData(data?.lastMonth);

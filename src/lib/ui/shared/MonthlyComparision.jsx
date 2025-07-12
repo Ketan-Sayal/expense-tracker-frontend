@@ -23,7 +23,7 @@ const MonthlyComparision = () => {
     const [lastYear, setLastYear] = useState("");
 
     useEffect(()=>{
-        axios.get("/api/expenses/monthlyInfo", {headers:{token:Cookies.get("token")}}).then((res)=>{
+        axios.get("https://expense-tracker-backend-qwkl.onrender.com/expenses/monthlyInfo", {headers:{token:Cookies.get("token")}}).then((res)=>{
             const data = res.data.data;
             const {totalExpensOfCurrMonth, currMonth, prevMonth, prevToPrevMonth, totalExpenseOfLastMonth, avgOfThreeMonths, avgOfSixMonths, avgOfYear, lastThirdMonth, lastSixthMonth, lastYearMonth, currMonthPercent, lastMonthPercent, currYear, lastYear}= data;
             setTotalExpenseOfCurrMonth(totalExpensOfCurrMonth);

@@ -34,7 +34,7 @@ function ProfileForm() {
     setSuccess("");
 
     try {
-      const result = await axios.patch("/api/users/update", data, {headers:{token: Cookies.get("token")}});
+      const result = await axios.patch("https://expense-tracker-backend-qwkl.onrender.com/users/update", data, {headers:{token: Cookies.get("token")}});
       setUser(result.data.data.user);
       setSuccess("Updated data sucessfully!!");
     } catch (error) {

@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   const fetchExpenses = async()=>{
     try {
-      const result = await axios.get("/api/expenses/", {headers:{token:Cookies.get("token")}});
+      const result = await axios.get("https://expense-tracker-backend-qwkl.onrender.com/expenses/", {headers:{token:Cookies.get("token")}});
       const expenseData = result.data.data.expenses;
       // console.log(expenseData);
       
@@ -50,7 +50,7 @@ const Dashboard = () => {
     // Add new expense to the expenses array in front-end and set showExpense to false
     setLoading(true);
     try {
-      const result = await axios.post("/api/expenses/", newExpense,{headers:{token:Cookies.get("token")}});
+      const result = await axios.post("https://expense-tracker-backend-qwkl.onrender.com/expenses/", newExpense,{headers:{token:Cookies.get("token")}});
       const data = result.data?.data?.expense;
       setExpenses((prev)=>([...prev, data]));
       setShowAddExpense(false);
@@ -73,7 +73,7 @@ const Dashboard = () => {
   const deleteExpense = async(id) => {
    setLoading(true);
     try {
-    await axios.delete(`/api/expenses/expense/${id}`);
+    await axios.delete(`https://expense-tracker-backend-qwkl.onrender.com/expenses/expense/${id}`, {headers:{token:Cookies.get("token")}});
     const deletedExpenses = expenses.filter((expense)=>expense._id.toString()!==id.toString());
     setExpenses(deletedExpenses);
    } catch (error) {

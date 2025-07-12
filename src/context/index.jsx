@@ -23,7 +23,7 @@ export const AuthProvider = ({children})=>{
         // console.log(token);
         
         if(token){
-            axios.get("/api/users/", {headers:{"token":token}}).then((res)=>{
+            axios.get("https://expense-tracker-backend-qwkl.onrender.com/users/", {headers:{"token":token}}).then((res)=>{
                 setUser(res.data.data.user);
                 setIsLoggedIn(true);
                 setLoading(false);

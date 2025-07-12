@@ -36,7 +36,7 @@ const Analytics = () => {
 
     const fetchPieChartData = async ()=>{
         try {
-            const result = await axios.get("/api/expenses/categories", {headers:{token:Cookies.get("token")}});
+            const result = await axios.get("https://expense-tracker-backend-qwkl.onrender.com/expenses/categories", {headers:{token:Cookies.get("token")}});
             const data = result.data?.data?.categoriesIncomeAndExpenses;
             // console.log(data);
             
@@ -48,7 +48,7 @@ const Analytics = () => {
 
     const fetchLineChartData = async ()=>{
         try {
-            const result = await axios.get("/api/expenses/total", {headers:{token:Cookies.get("token")}});
+            const result = await axios.get("https://expense-tracker-backend-qwkl.onrender.com/expenses/total", {headers:{token:Cookies.get("token")}});
             const data = result.data?.data?.totalIncomeAndExpenses;
             // console.log(data);
             

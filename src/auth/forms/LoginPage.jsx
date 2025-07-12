@@ -34,7 +34,7 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await axios.post("/api/users/login", data);
+      const res = await axios.post("https://expense-tracker-backend-qwkl.onrender.com/users/login", data);
       const result = res.data?.data;
       if(result?.user._id){
         const token = result.acessToken;
@@ -64,10 +64,10 @@ export default function LoginPage() {
         .then(res => res.data);
       try {
       const {name, email} = userInfo;
-      const res = await axios.post("/api/users/login/google-oauth", {username:name, email});
+      const res = await axios.post("https://expense-tracker-backend-qwkl.onrender.com/users/login/google-oauth", {username:name, email});
       const result =  res.data?.data;
       if(result?.user){
-      Cookies.set("token", result.acessToken, {expires:5});
+      Cookies.set("token", result.acessToken, {expires:5, httpOnly:false});
       setIsLoggedIn(true);
       setUser(result.user);
       navigate("/");
