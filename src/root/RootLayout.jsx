@@ -255,7 +255,9 @@ function RootLayout() {
               {isLoggedIn && (
                 <div className="pt-6 mt-6 border-t border-gray-200 space-y-2">
                   
-                  <button className="flex items-center space-x-4 px-4 py-4 w-full text-left text-gray-700 hover:text-blue-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 rounded-2xl transition-all duration-300 group">
+                  <button 
+                  onClick={()=>navigate(`/profile/${user?._id}`)}
+                  className="flex items-center space-x-4 px-4 py-4 w-full text-left text-gray-700 hover:text-blue-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 rounded-2xl transition-all duration-300 group">
                     <User className="w-6 h-6 group-hover:text-blue-600 transition-colors duration-300" />
                     <span className="flex-1 font-medium">Profile</span>
                   </button>
