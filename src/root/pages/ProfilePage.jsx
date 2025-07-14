@@ -29,6 +29,8 @@ function ProfileForm() {
 
   // const navigate = useNavigate();
   const update = async(data) => {
+    console.log(data);
+    
     setLoading(true);
     setError("");
     setSuccess("");
@@ -102,7 +104,10 @@ function ProfileForm() {
       </div>
 
       {/* Profile Form */}
-      <form onSubmit={handleSubmit(update)} className="bg-white/95 relative backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 overflow-hidden">
+      <form onSubmit={(e)=>{
+        handleSubmit(update);
+        e.preventDefault();
+        }} className="bg-white/95 relative backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 overflow-hidden">
       
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 p-6">
           <h3 className="text-xl font-bold text-white flex items-center space-x-3">
