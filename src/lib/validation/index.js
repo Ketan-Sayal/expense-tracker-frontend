@@ -25,7 +25,7 @@ export const ContactSchema = yup
 
 export const UpdateUserSchema = yup
   .object({
-    username:yup.string().min(1).required(),
-    email: yup.string().email().matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/).min(1).required(),
+    username:yup.string().min(1, {message:"Username is required"}).required(),
+    email: yup.string().email().matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/).min(1, {message:"Email is required"}).required(),
     newPassword:yup.string().min(1, {message:"New password shouldn't be empty"}).required({message:"New password shouldn't be empty"})
-  })
+  }).required();

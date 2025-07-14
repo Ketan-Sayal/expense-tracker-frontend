@@ -26,7 +26,9 @@ function ProfileForm() {
   });
 
   if(!isLoggedIn) return <Navigate to={"/"}/>
-
+  
+  
+  
   // const navigate = useNavigate();
   const update = async(data) => {
     console.log(data);
@@ -40,7 +42,7 @@ function ProfileForm() {
       setUser(result.data.data.user);
       setSuccess("Updated data sucessfully!!");
     } catch (error) {
-      if(error?.response?.data?.message)setError(error.response.data.message);
+      if(error?.response?.data?.message)setError(error?.response?.data?.message);
       console.log(error);
       
     } finally {
@@ -104,10 +106,7 @@ function ProfileForm() {
       </div>
 
       {/* Profile Form */}
-      <form onSubmit={(e)=>{
-        handleSubmit(update);
-        e.preventDefault();
-        }} className="bg-white/95 relative backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 overflow-hidden">
+      <form onSubmit={handleSubmit(update)} className="bg-white/95 relative backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 overflow-hidden">
       
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 p-6">
           <h3 className="text-xl font-bold text-white flex items-center space-x-3">
@@ -137,7 +136,7 @@ function ProfileForm() {
                 }`}
                 placeholder="Enter your username"
               />
-              {errors.username && <p className='text-sm text-red-500'>{errors.username.message}</p>}
+              {errors?.username && <p className='text-sm text-red-500'>{`${errors?.username?.message.message}`}</p>}
               {isEditing && (
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
                   <Edit3 className="w-5 h-5 text-gray-400" />
@@ -165,7 +164,7 @@ function ProfileForm() {
                 }`}
                 placeholder="Enter your email address"
               />
-              {errors.email && <p className='text-sm text-red-500'>{errors.email.message}</p>}
+              {errors?.email && <p className='text-sm text-red-500'>{`${errors?.email?.message.message}`}</p>}
               {isEditing && (
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
                   <Edit3 className="w-5 h-5 text-gray-400" />
@@ -197,7 +196,7 @@ function ProfileForm() {
                       className="w-full px-6 py-4 pr-14 rounded-2xl border-2 border-gray-200 focus:border-orange-500 focus:bg-white focus:shadow-lg focus:shadow-orange-500/10 hover:border-orange-300 transition-all duration-300 font-medium text-gray-800 bg-white/80"
                       placeholder="Enter your new password"
                     />
-                    {errors.newPassword && <p className='text-sm text-red-500'>{errors.newPassword.message}</p>}
+                    {errors?.newPassword && <p className='text-sm text-red-500'>{`${errors?.newPassword?.message.message}`}</p>}
                     {error && <p className='text-sm text-red-500'>{error}</p>}
                     <button
                       type="button"
