@@ -74,7 +74,7 @@ const Dashboard = () => {
    setLoading(true);
     try {
     await axios.delete(`https://expense-tracker-backend-qwkl.onrender.com/expenses/expense/${id}`, {headers:{token:Cookies.get("token")}});
-    const deletedExpenses = expenses.filter((expense)=>expense._id.toString()!==id.toString());
+    const deletedExpenses = expenses?.filter((expense)=>expense._id.toString()!==id.toString());
     setExpenses(deletedExpenses);
    } catch (error) {
     console.log(error);
@@ -86,19 +86,19 @@ const Dashboard = () => {
   if(filterCategory==='All'){
     filteredExpenses = expenses;
     if(searchTerm){
-      filteredExpenses = filteredExpenses.filter((expense)=>expense.title.includes(searchTerm)|| expense.description.includes(searchTerm));
+      filteredExpenses = filteredExpenses?.filter((expense)=>expense.title.includes(searchTerm)|| expense.description.includes(searchTerm));
     }
   }else{
     filteredExpenses = expenses?.filter(expense => expense.category === filterCategory);
     if(searchTerm){
-      filteredExpenses = filteredExpenses.filter((expense)=>expense.title.includes(searchTerm)|| expense.description.includes(searchTerm));
+      filteredExpenses = filteredExpenses?.filter((expense)=>expense.title.includes(searchTerm)|| expense.description.includes(searchTerm));
     }
   }
 
-  const totalIncome = expenses.filter((expense)=>expense.type === "income").reduce((sum, expense)=>sum+=expense.amount, 0);
+  const totalIncome = expenses?.filter((expense)=>expense.type === "income").reduce((sum, expense)=>sum+=expense.amount, 0);
   // console.log(totalIncome);
   
-  const totalExpenses = expenses.filter((expense)=>expense.type === "expense").reduce((sum, expense)=>sum+=expense.amount, 0);
+  const totalExpenses = expenses?.filter((expense)=>expense.type === "expense").reduce((sum, expense)=>sum+=expense.amount, 0);
   const balance = totalIncome-totalExpenses;
   
 
@@ -184,7 +184,7 @@ const Dashboard = () => {
           <span>Categories</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((category) => {
+          {categories?.map((category) => {
             const categoryExpenses = expenses?.filter(e => e.category === category.name && e.type === 'expense');
             const categoryTotal = categoryExpenses?.reduce((sum, e) => sum + e.amount, 0);
             
@@ -226,7 +226,7 @@ const Dashboard = () => {
               className="pl-10 pr-8 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white"
             >
               <option value="All">All Categories</option>
-              {categories.map(category => (
+              {categories?.map(category => (
                 <option key={category.name} value={category.name}>{category.name}</option>
               ))}
             </select>
